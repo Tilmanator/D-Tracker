@@ -9,9 +9,6 @@ public class DataManager {
 	// Constants
 	private final int maxValues = 10*90;
 	
-	// Variables - set by user
-	private double InsulinRatio = 3*18; // mg/dL that one unit corrects for
-	private double carbRatio = 10; // Grams of carbs per unit of insulin
 	
 	// Constructors
 	DataManager(ArrayList<BSMeasurement> v){
