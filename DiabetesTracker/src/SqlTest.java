@@ -19,7 +19,6 @@ public class SqlTest {
 		         System.out.println();
 		 
 		         ResultSet rset = stmt.executeQuery(strSelect);
-		 
 		         // Step 4: Process the ResultSet by scrolling the cursor forward via next().
 		         //  For each row, retrieve the contents of the cells with getXxx(columnName).
 		         System.out.println("The records selected are:");

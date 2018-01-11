@@ -4,19 +4,18 @@ import java.util.Date;
 
 public class DataManager {
 	// Default units is mg/dL
-	private ArrayList<BSMeasurement> values;
+	private ArrayList<Entry> values;
 
 	// Constants
 	private final int maxValues = 10*90;
 	
-	
 	// Constructors
-	DataManager(ArrayList<BSMeasurement> v){
+	DataManager(ArrayList<Entry> v){
 		values = v;
 	}
 	
 	DataManager(){
-		values = new ArrayList<BSMeasurement>();
+		values = new ArrayList<Entry>();
 	}
 	
 	// Methods
@@ -24,7 +23,7 @@ public class DataManager {
 		if(values.size() >= maxValues){
 			values.remove(0);
 		}
-		values.add(new BSMeasurement(val));
+		values.add(new Entry(val, 0.0, 0.0));
 	}
 	
 	public void addValue(int val, Instant when){
@@ -32,6 +31,6 @@ public class DataManager {
 		if(values.size() >= maxValues){
 			values.remove(0);
 		}
-		values.add(new BSMeasurement(val, when));
+		values.add(new Entry(val, 0.0, 0.0, when));
 	}
 }
