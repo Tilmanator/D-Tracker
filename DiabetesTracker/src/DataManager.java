@@ -1,4 +1,9 @@
 import java.util.ArrayList;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.*;
 import java.util.Date;
 
@@ -19,6 +24,40 @@ public class DataManager {
 	}
 	
 	// Methods
+	// Return true for success
+	public boolean initialLoad(){
+		try (Connection conn = DriverManager.getConnection(
+		               "jdbc:mysql://localhost:"+DatabaseInfo.socket()+"/"+
+		               DatabaseInfo.db()+"?useSSL=false", DatabaseInfo.user(), DatabaseInfo.pw());
+		               // MySQL: "jdbc:mysql://hostname:port/databaseName", "username", "password"
+
+		         Statement stmt = conn.createStatement();
+		      ) {
+		         
+		         String strSelect = "select * from shoes";
+		 
+		         ResultSet rset = stmt.executeQuery(strSelect);
+		         // Step 4: Process the ResultSet by scrolling the cursor forward via next().
+		         //  For each row, retrieve the contents of the cells with getXxx(columnName).
+		         System.out.println("The records selected are:");
+		         int rowCount = 0;
+		         while(rset.next()) {   // Move the cursor to the next row, return false if no more row
+		            String title = rset.getString("name");
+		            String price = rset.getString("colour");
+		            int    qty   = rset.getInt("id");
+		            System.out.println(title + ", " + price + ", " + qty);
+		            ++rowCount;
+		         }
+		         System.out.println("Total number of records = " + rowCount);
+		 
+		      } catch(SQLException ex) {
+		         ex.printStackTrace();
+		         return false;
+		      }
+		      
+		return true;
+	}
+	
 	public void addValue(int val){
 		if(values.size() >= maxValues){
 			values.remove(0);
