@@ -1,6 +1,6 @@
 import java.time.Instant;
 
-public class Entry {
+public class Entry implements Comparable<Entry> {
 	Instant time;
 	int bloodSugar;
 	double insulin;
@@ -18,5 +18,24 @@ public class Entry {
 		bloodSugar = v;
 		insulin = i;
 		carbs = c;
+	}
+	
+	// Based on time
+	@Override
+	public int compareTo(Entry o) {
+		return time.compareTo(o.time);
+	}
+	
+	public static boolean canMerge(Entry e, Entry r){
+		if(e.time.equals(r.time)){   // Make narrow interval?
+			if((e.bloodSugar == 0 && r.bloodSugar > 0) ||
+				(e.bloodSugar > 0 && r.bloodSugar == 0) ||  
+				(e.insulin == 0 && r.insulin > 0) ||
+				(e.insulin> 0 && r.insulin == 0) ||  
+				(e.carbs == 0 && r.carbs > 0) ||
+				(e.carbs > 0 && r.carbs == 0))
+				return true;
+		}
+		return false;
 	}
 }

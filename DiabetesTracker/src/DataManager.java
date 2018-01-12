@@ -34,11 +34,10 @@ public class DataManager {
 		         Statement stmt = conn.createStatement();
 		      ) {
 		         
-		         String strSelect = "select * from shoes";
+		         String query = "select * from shoes";
 		 
-		         ResultSet rset = stmt.executeQuery(strSelect);
-		         // Step 4: Process the ResultSet by scrolling the cursor forward via next().
-		         //  For each row, retrieve the contents of the cells with getXxx(columnName).
+		         ResultSet rset = stmt.executeQuery(query);
+
 		         System.out.println("The records selected are:");
 		         int rowCount = 0;
 		         while(rset.next()) {   // Move the cursor to the next row, return false if no more row
