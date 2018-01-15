@@ -1,4 +1,3 @@
-import java.time.Instant;
 import java.util.Date;
 
 public class Entry implements Comparable<Entry> {
@@ -25,6 +24,13 @@ public class Entry implements Comparable<Entry> {
 	@Override
 	public int compareTo(Entry o) {
 		return time.compareTo(o.time);
+	}
+	
+	public String toString(){
+		return time +
+				":\n\t Blood Sugar = " + bloodSugar +
+				"\n\t Insulin Dose = " + insulin + 
+				"\n\t Carbs = " + carbs;
 	}
 	
 	public static boolean canMerge(Entry e, Entry r){
