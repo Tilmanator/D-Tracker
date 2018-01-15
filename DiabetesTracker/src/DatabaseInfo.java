@@ -1,7 +1,7 @@
 
 public class DatabaseInfo {
 	private static String user = "tilman";
-	private static String db = "test";
+	private static String db = "D-tracker";
 	private static String socket = "3306";
 	private static String pw = "";
 

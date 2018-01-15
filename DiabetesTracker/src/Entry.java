@@ -1,7 +1,8 @@
 import java.time.Instant;
+import java.util.Date;
 
 public class Entry implements Comparable<Entry> {
-	Instant time;
+	Date time;
 	int bloodSugar;
 	double insulin;
 	double carbs;
@@ -10,10 +11,10 @@ public class Entry implements Comparable<Entry> {
 		bloodSugar = v;
 		insulin = i;
 		carbs = c;
-		time = Instant.now();
+		time = new Date();
 	}
 	
-	Entry(int v, double i, double c, Instant t){
+	Entry(int v, double i, double c, Date t){
 		time = t;
 		bloodSugar = v;
 		insulin = i;
